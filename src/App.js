@@ -5,14 +5,14 @@ import Person from "./Person/PersonComponent";
 import styled from "styled-components";
 
 const StyleButton = styled.button`
-background-color: green;
+background-color: ${(props) => (props.alt ? "red" : "green")};
 font: inherit;
 color: white;
 border: 1px solid blue;
 padding: 8px;
 cursor: pointer;
 &:hover {
-  background-color: red;
+  background-color: ${(props) => (props.alt ? "salmon" : "lightgreen")};
   color: black;
 },
 `;
@@ -92,10 +92,10 @@ class App extends Component {
         </div>
       );
       style.backgroundColor = "red";
-      // style[":hover"] = {
-      //   backgroundColor: "salmon",
-      //   color: "black",
-      // };
+      style[":hover"] = {
+        backgroundColor: "salmon",
+        color: "black",
+      };
     }
 
     const classes = [];
@@ -111,7 +111,9 @@ class App extends Component {
       <div className="App">
         <h1>Hi i am react App</h1>
         <p className={classes.join(" ")}>I am a working</p>
-        <StyleButton onClick={this.toggleHandler}>Toggle Name</StyleButton>
+        <StyleButton alt={this.state.toggleValue} onClick={this.toggleHandler}>
+          Toggle Name
+        </StyleButton>
         {persons}
       </div>
       //      </StyleRoot>
