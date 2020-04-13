@@ -1,6 +1,22 @@
 import React, { Component } from "react";
 import "./App.css";
 import Person from "./Person/PersonComponent";
+// import Radium, { StyleRoot } from "radium";
+import styled from "styled-components";
+
+const StyleButton = styled.button`
+background-color: green;
+font: inherit;
+color: white;
+border: 1px solid blue;
+padding: 8px;
+cursor: pointer;
+&:hover {
+  background-color: red;
+  color: black;
+},
+`;
+
 class App extends Component {
   state = {
     person: [
@@ -44,13 +60,19 @@ class App extends Component {
       toggleValue: !temp,
     });
   };
+
   render() {
     const style = {
-      backgroundColor: "white",
+      backgroundColor: "green",
       font: "inherit",
+      color: "white",
       border: "1px solid blue",
       padding: "8px",
       cursor: "pointer",
+      ":hover": {
+        backgroundColor: "red",
+        color: "black",
+      },
     };
     let persons = null;
     if (this.state.toggleValue) {
@@ -69,17 +91,30 @@ class App extends Component {
           })}
         </div>
       );
+      style.backgroundColor = "red";
+      // style[":hover"] = {
+      //   backgroundColor: "salmon",
+      //   color: "black",
+      // };
+    }
+
+    const classes = [];
+    if (this.state.person.length <= 2) {
+      classes.push("red");
+    }
+    if (this.state.person.length <= 1) {
+      classes.push("bold");
     }
 
     return (
+      // <StyleRoot>
       <div className="App">
         <h1>Hi i am react App</h1>
-        <p>I am a working</p>
-        <button style={style} onClick={this.toggleHandler}>
-          Toggle Name
-        </button>
+        <p className={classes.join(" ")}>I am a working</p>
+        <StyleButton onClick={this.toggleHandler}>Toggle Name</StyleButton>
         {persons}
       </div>
+      //      </StyleRoot>
     );
   }
 }
