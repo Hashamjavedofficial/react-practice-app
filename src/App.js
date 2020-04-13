@@ -91,11 +91,11 @@ class App extends Component {
           })}
         </div>
       );
-      style.backgroundColor = "red";
-      style[":hover"] = {
-        backgroundColor: "salmon",
-        color: "black",
-      };
+      // style.backgroundColor = "red";
+      // style[":hover"] = {
+      //   backgroundColor: "salmon",
+      //   color: "black",
+      // };
     }
 
     const classes = [];
