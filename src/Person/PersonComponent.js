@@ -21,6 +21,10 @@ const Person = (props) => {
   //     width: "450px",
   //   },
   // };
+  const ran = Math.random();
+  if (ran > 0.3) {
+    throw new Error("Something went wrong");
+  }
 
   return (
     // <StyleDive>
