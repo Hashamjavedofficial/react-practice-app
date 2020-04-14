@@ -1,8 +1,23 @@
 import React, { Component } from "react";
 import CssClasses from "./App.module.css";
-import { Persons } from "../components/Persons/Persons";
+import Persons from "../components/Persons/Persons";
 import { Cockpit } from "../components/Cockpit/Cockpit";
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log("[App] Consturctor");
+  }
+  static getDerivedStateFromProps(props, state) {
+    console.log("[App] getDerivedStateFromProps");
+    return state;
+  }
+  // componentWillMount() {
+  //   console.log("[App] componentWillMount");
+  // }
+  componentDidMount() {
+    console.log("[App] componentDidMount");
+  }
+
   state = {
     person: [
       { id: 1, name: "Hasham", age: 22 },
@@ -48,6 +63,7 @@ class App extends Component {
   };
 
   render() {
+    console.log("[App] render");
     let persons = null;
 
     if (this.state.toggleValue) {
@@ -63,6 +79,7 @@ class App extends Component {
     return (
       <div className={CssClasses.App}>
         <Cockpit
+          title={this.props.apptitle}
           clicked={this.toggleHandler}
           person={this.state.person}
           toggleValue={this.state.toggleValue}

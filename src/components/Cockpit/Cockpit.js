@@ -16,7 +16,7 @@ export const Cockpit = (props) => {
   }
   return (
     <div className={CssClasses.Cockpit}>
-      <h1>Hi i am react App</h1>
+      <h1>{props.title}</h1>
       <p className={classes.join(" ")}>I am a working</p>
       <button className={btnClasses} onClick={props.clicked}>
         Toggle Name
