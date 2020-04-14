@@ -1,22 +1,6 @@
 import React, { Component } from "react";
 import CssClasses from "./App.module.css";
-import Person from "./Person/PersonComponent";
-import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
-// import Radium, { StyleRoot } from "radium";
-// import styled from "styled-components";
-
-// const StyleButton = styled.button`
-// background-color: ${(props) => (props.alt ? "red" : "green")};
-// font: inherit;
-// color: white;
-// border: 1px solid blue;
-// padding: 8px;
-// cursor: pointer;
-// &:hover {
-//   background-color: ${(props) => (props.alt ? "salmon" : "lightgreen")};
-//   color: black;
-// },
-// `;
+import Person from "../components/Persons/Person/PersonComponent";
 
 class App extends Component {
   state = {
@@ -82,25 +66,19 @@ class App extends Component {
         <div>
           {this.state.person.map((person, index) => {
             return (
-              <ErrorBoundary key={person.id}>
-                <Person
-                  name={person.name}
-                  age={person.age}
-                  click={() => this.deletePersonHandler(index)}
-                  changed={(event) => this.changeHandler(event, person.id)}
-                />
-              </ErrorBoundary>
+              <Person
+                name={person.name}
+                age={person.age}
+                click={() => this.deletePersonHandler(index)}
+                changed={(event) => this.changeHandler(event, person.id)}
+                key={person.id}
+              />
             );
           })}
         </div>
       );
 
       btnClasses = CssClasses.Red;
-      // style.backgroundColor = "red";
-      // style[":hover"] = {
-      //   backgroundColor: "salmon",
-      //   color: "black",
-      // };
     }
 
     const classes = [];
@@ -112,7 +90,6 @@ class App extends Component {
     }
 
     return (
-      // <StyleRoot>
       <div className={CssClasses.App}>
         <h1>Hi i am react App</h1>
         <p className={classes.join(" ")}>I am a working</p>
@@ -121,7 +98,6 @@ class App extends Component {
         </button>
         {persons}
       </div>
-      //      </StyleRoot>
     );
   }
 }
