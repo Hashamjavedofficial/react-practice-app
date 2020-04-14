@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CssClasses from "./App.module.css";
-import Person from "../components/Persons/Person/PersonComponent";
-
+import { Persons } from "../components/Persons/Persons";
+import { Cockpit } from "../components/Cockpit/Cockpit";
 class App extends Component {
   state = {
     person: [
@@ -9,6 +9,7 @@ class App extends Component {
       { id: 2, name: "Saif", age: 20 },
       { id: 3, name: "Aqsa", age: 16 },
     ],
+    toggleValue: false,
   };
 
   switchNameHandler = (newName) => {
@@ -47,55 +48,25 @@ class App extends Component {
   };
 
   render() {
-    const style = {
-      backgroundColor: "green",
-      font: "inherit",
-      color: "white",
-      border: "1px solid blue",
-      padding: "8px",
-      cursor: "pointer",
-      ":hover": {
-        backgroundColor: "red",
-        color: "black",
-      },
-    };
     let persons = null;
-    let btnClasses = null;
+
     if (this.state.toggleValue) {
       persons = (
-        <div>
-          {this.state.person.map((person, index) => {
-            return (
-              <Person
-                name={person.name}
-                age={person.age}
-                click={() => this.deletePersonHandler(index)}
-                changed={(event) => this.changeHandler(event, person.id)}
-                key={person.id}
-              />
-            );
-          })}
-        </div>
+        <Persons
+          person={this.state.person}
+          clicked={this.deletePersonHandler}
+          changed={this.changeHandler}
+        />
       );
-
-      btnClasses = CssClasses.Red;
-    }
-
-    const classes = [];
-    if (this.state.person.length <= 2) {
-      classes.push(CssClasses.red);
-    }
-    if (this.state.person.length <= 1) {
-      classes.push(CssClasses.bold);
     }
 
     return (
       <div className={CssClasses.App}>
-        <h1>Hi i am react App</h1>
-        <p className={classes.join(" ")}>I am a working</p>
-        <button className={btnClasses} onClick={this.toggleHandler}>
-          Toggle Name
-        </button>
+        <Cockpit
+          clicked={this.toggleHandler}
+          person={this.state.person}
+          toggleValue={this.state.toggleValue}
+        />
         {persons}
       </div>
     );
