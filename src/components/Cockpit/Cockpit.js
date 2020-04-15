@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CssClasses from "./Cockpit.module.css";
 export const Cockpit = (props) => {
+  useEffect(() => {
+    console.log("useEffect working in cockpit");
+    setTimeout(() => {
+      alert("use effect working");
+    }, 1000);
+  }, []);
+
   const classes = [];
   let btnClasses = "";
 

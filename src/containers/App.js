@@ -17,6 +17,13 @@ class App extends Component {
   componentDidMount() {
     console.log("[App] componentDidMount");
   }
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("[App] shouldComponentUpdate");
+    return true;
+  }
+  componentDidUpdate() {
+    console.log("[App] componenetDidUpdate");
+  }
 
   state = {
     person: [
