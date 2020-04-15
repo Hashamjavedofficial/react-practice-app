@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CssClasses from "./App.module.css";
 import Persons from "../components/Persons/Persons";
-import { Cockpit } from "../components/Cockpit/Cockpit";
+import Cockpit from "../components/Cockpit/Cockpit";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -15,16 +15,16 @@ class App extends Component {
   componentDidMount() {
     console.log("[App] componentDidMount");
   }
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.person != this.state.person) {
-      console.log("true working");
-      return true;
-    } else {
-      console.log("false working");
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if (nextState.person != this.state.person) {
+  //     console.log("true working");
+  //     return true;
+  //   } else {
+  //     console.log("false working");
 
-      return false;
-    }
-  }
+  //     return false;
+  //   }
+  // }
   componentDidUpdate() {
     console.log("[App] componenetDidUpdate");
   }
@@ -100,7 +100,7 @@ class App extends Component {
           <Cockpit
             title={this.props.apptitle}
             clicked={this.toggleHandler}
-            person={this.state.person}
+            personLength={this.state.person.length}
             toggleValue={this.state.toggleValue}
           />
         ) : null}

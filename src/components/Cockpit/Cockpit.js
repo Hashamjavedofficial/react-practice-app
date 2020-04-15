@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import CssClasses from "./Cockpit.module.css";
-export const Cockpit = (props) => {
+const Cockpit = (props) => {
   useEffect(() => {
     // console.log("useEffect working in cockpit");
     // setTimeout(() => {
@@ -24,10 +24,10 @@ export const Cockpit = (props) => {
     btnClasses = CssClasses.Red;
   }
 
-  if (props.person.length <= 2) {
+  if (props.personLength <= 2) {
     classes.push(CssClasses.red);
   }
-  if (props.person.length <= 1) {
+  if (props.personLength <= 1) {
     classes.push(CssClasses.bold);
   }
   return (
@@ -40,3 +40,4 @@ export const Cockpit = (props) => {
     </div>
   );
 };
+export default React.memo(Cockpit);
