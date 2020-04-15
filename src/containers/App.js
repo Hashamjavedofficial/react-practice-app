@@ -11,19 +11,17 @@ class App extends Component {
     console.log("[App] getDerivedStateFromProps");
     return state;
   }
-  // componentWillMount() {
-  //   console.log("[App] componentWillMount");
+
+  // componentDidMount() {
+  //   console.log("[App] componentDidMount");
   // }
-  componentDidMount() {
-    console.log("[App] componentDidMount");
-  }
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log("[App] shouldComponentUpdate");
-    return true;
-  }
-  componentDidUpdate() {
-    console.log("[App] componenetDidUpdate");
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log("[App] shouldComponentUpdate");
+  //   return true;
+  // }
+  // componentDidUpdate() {
+  //   console.log("[App] componenetDidUpdate");
+  // }
 
   state = {
     person: [
@@ -32,6 +30,7 @@ class App extends Component {
       { id: 3, name: "Aqsa", age: 16 },
     ],
     toggleValue: false,
+    showCockpit: true,
   };
 
   switchNameHandler = (newName) => {
@@ -85,12 +84,21 @@ class App extends Component {
 
     return (
       <div className={CssClasses.App}>
-        <Cockpit
-          title={this.props.apptitle}
-          clicked={this.toggleHandler}
-          person={this.state.person}
-          toggleValue={this.state.toggleValue}
-        />
+        <button
+          onClick={() => {
+            this.setState({ showCockpit: !this.state.showCockpit });
+          }}
+        >
+          Show cockpit
+        </button>
+        {this.state.showCockpit ? (
+          <Cockpit
+            title={this.props.apptitle}
+            clicked={this.toggleHandler}
+            person={this.state.person}
+            toggleValue={this.state.toggleValue}
+          />
+        ) : null}
         {persons}
       </div>
     );
