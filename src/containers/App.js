@@ -12,16 +12,22 @@ class App extends Component {
     return state;
   }
 
-  // componentDidMount() {
-  //   console.log("[App] componentDidMount");
-  // }
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   console.log("[App] shouldComponentUpdate");
-  //   return true;
-  // }
-  // componentDidUpdate() {
-  //   console.log("[App] componenetDidUpdate");
-  // }
+  componentDidMount() {
+    console.log("[App] componentDidMount");
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.person != this.state.person) {
+      console.log("true working");
+      return true;
+    } else {
+      console.log("false working");
+
+      return false;
+    }
+  }
+  componentDidUpdate() {
+    console.log("[App] componenetDidUpdate");
+  }
 
   state = {
     person: [
@@ -40,7 +46,6 @@ class App extends Component {
         { name: "Saif javed", age: 22 },
         { name: "Aqsa javed", age: 18 },
       ],
-      toggleValue: false,
     });
   };
   changeHandler = (event, id) => {
