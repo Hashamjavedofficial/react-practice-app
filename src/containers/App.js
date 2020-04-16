@@ -34,7 +34,7 @@ class App extends Component {
   state = {
     person: [
       { id: 1, name: "Hasham", age: 22 },
-      { id: 2, name: "Saif", age: "20" },
+      { id: 2, name: "Saif", age: 15 },
       { id: 3, name: "Aqsa", age: 16 },
     ],
     toggleValue: false,

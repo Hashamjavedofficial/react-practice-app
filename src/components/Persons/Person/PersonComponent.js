@@ -6,6 +6,14 @@ import PropTypes from "prop-types";
 import Persons from "../Persons";
 
 class Person extends Component {
+  constructor(props) {
+    super(props);
+    this.inputElementRef = React.createRef();
+  }
+  componentDidMount() {
+    // this.selectedEle.focus();
+    this.inputElementRef.current.focus();
+  }
   render() {
     console.log("[Person] rendering....");
     return (
@@ -18,6 +26,8 @@ class Person extends Component {
         <input
           type="text"
           onChange={this.props.changed}
+          // ref={(currentEle) => (this.selectedEle = currentEle)}
+          ref={this.inputElementRef}
           value={this.props.name}
         />
       </Aux>
@@ -26,11 +36,11 @@ class Person extends Component {
   }
 }
 
-Person.propTypes = {
-  click: PropTypes.func,
-  name: PropTypes.string,
-  age: PropTypes.number,
-  changed: PropTypes.func,
-};
+// Person.propTypes = {
+//   click: PropTypes.func,
+//   name: PropTypes.string,
+//   age: PropTypes.number,
+//   changed: PropTypes.func,
+// };
 
 export default withClass(Person, PersonClasses.Person);
