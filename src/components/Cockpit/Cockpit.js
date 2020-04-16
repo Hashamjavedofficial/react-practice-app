@@ -4,7 +4,7 @@ import AuthContext from "../../context/auth-context";
 
 const Cockpit = (props) => {
   const selectBtnEle = useRef(null);
-
+  const authContext = useContext(AuthContext);
   useEffect(() => {
     // console.log("useEffect working in cockpit");
     // setTimeout(() => {
@@ -42,9 +42,8 @@ const Cockpit = (props) => {
       <button ref={selectBtnEle} className={btnClasses} onClick={props.clicked}>
         Toggle Name
       </button>
-      <AuthContext.Consumer>
-        {(context) => <button onClick={context.login}>Login</button>}
-      </AuthContext.Consumer>
+
+      <button onClick={authContext.login}>Login</button>
     </div>
   );
 };
