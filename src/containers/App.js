@@ -4,6 +4,7 @@ import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 import withClass from "../hoc/WithClass";
 import Aux from "../hoc/Auxiliray";
+import AuthContext from "../context/auth-context";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -40,6 +41,7 @@ class App extends Component {
     toggleValue: false,
     showCockpit: true,
     stateCounter: 0,
+    authenticated: false,
   };
 
   switchNameHandler = (newName) => {
@@ -78,6 +80,11 @@ class App extends Component {
       toggleValue: !temp,
     });
   };
+  loginHandler = () => {
+    this.setState({
+      authenticated: true,
+    });
+  };
 
   render() {
     console.log("[App] render");
@@ -102,15 +109,22 @@ class App extends Component {
         >
           Show cockpit
         </button>
-        {this.state.showCockpit ? (
-          <Cockpit
-            title={this.props.apptitle}
-            clicked={this.toggleHandler}
-            personLength={this.state.person.length}
-            toggleValue={this.state.toggleValue}
-          />
-        ) : null}
-        {persons}
+        <AuthContext.Provider
+          value={{
+            authenticated: this.state.authenticated,
+            login: this.loginHandler,
+          }}
+        >
+          {this.state.showCockpit ? (
+            <Cockpit
+              title={this.props.apptitle}
+              clicked={this.toggleHandler}
+              personLength={this.state.person.length}
+              toggleValue={this.state.toggleValue}
+            />
+          ) : null}
+          {persons}
+        </AuthContext.Provider>
       </Aux>
     );
   }

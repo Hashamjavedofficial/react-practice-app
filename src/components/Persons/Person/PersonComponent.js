@@ -4,6 +4,7 @@ import Aux from "../../../hoc/Auxiliray";
 import withClass from "../../../hoc/WithClass";
 import PropTypes from "prop-types";
 import Persons from "../Persons";
+import AuthContext from "../../../context/auth-context";
 
 class Person extends Component {
   constructor(props) {
@@ -19,6 +20,15 @@ class Person extends Component {
     return (
       // <div className={PersonClasses.Person}>
       <Aux>
+        <AuthContext.Consumer>
+          {(context) =>
+            context.authenticated ? (
+              <p>This is authenticated</p>
+            ) : (
+              <p> Please login</p>
+            )
+          }
+        </AuthContext.Consumer>
         <p onClick={this.props.click}>
           My name is {this.props.name} and age is {this.props.age}
         </p>
