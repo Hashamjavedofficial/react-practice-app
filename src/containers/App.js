@@ -39,6 +39,7 @@ class App extends Component {
     ],
     toggleValue: false,
     showCockpit: true,
+    stateCounter: 0,
   };
 
   switchNameHandler = (newName) => {
@@ -58,8 +59,11 @@ class App extends Component {
     person.name = event.target.value;
     const persons = [...this.state.person];
     persons[personIndex] = person;
-    this.setState({
-      person: persons,
+    this.setState((prevState, props) => {
+      return {
+        person: persons,
+        stateCounter: prevState.stateCounter + 1,
+      };
     });
   };
   deletePersonHandler = (personIndex) => {
