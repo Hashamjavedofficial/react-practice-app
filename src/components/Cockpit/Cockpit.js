@@ -1,11 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import CssClasses from "./Cockpit.module.css";
+
 const Cockpit = (props) => {
+  const selectBtnEle = useRef(null);
+
   useEffect(() => {
     // console.log("useEffect working in cockpit");
     // setTimeout(() => {
     //   alert("use effect working");
     // }, 1000);
+    selectBtnEle.current.click();
     return () => {
       // console.log("[cockpit] return");
     };
@@ -34,7 +38,7 @@ const Cockpit = (props) => {
     <div className={CssClasses.Cockpit}>
       <h1>{props.title}</h1>
       <p className={classes.join(" ")}>I am a working</p>
-      <button className={btnClasses} onClick={props.clicked}>
+      <button ref={selectBtnEle} className={btnClasses} onClick={props.clicked}>
         Toggle Name
       </button>
     </div>
